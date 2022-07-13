@@ -1,31 +1,18 @@
 import React from "react";
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import { useState } from "react";
+import FormTodo from "./formtodo";
+import Todo from "./todo";
 
 //create your first component
 const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
-};
+	const [todos, setTodos] = useState([]);
 
+	const addTodo = (text) => {
+		const newTodos = [...todos, { text }];
 
-
-fetch('https://assets.breatheco.de/apis/fake/todos/user/alesanchezr', {
+		setTodos(newTodos);
+/*
+	fetch('https://assets.breatheco.de/apis/fake/todos/user/dpizapal', {
       method: "PUT",
       body: JSON.stringify(todos),
       headers: {
@@ -55,4 +42,47 @@ fetch('https://assets.breatheco.de/apis/fake/todos/user/alesanchezr', {
     })
     .catch(error => console.error('Error: ', error));         //manejo de errores 
 
+*/
+
+	};
+
+	const markTodo = (index) => {
+		const newTodos = [...todos];
+		newTodos[index].isDone = true;
+		setTodos(newTodos);
+	};
+
+	const removeTodo = (index) => {
+		const newTodos = [...todos];
+		newTodos.splice(index, 1);
+		setTodos(newTodos);
+	};
+
+
+
+
+	return (
+		
+		<div id="Box" className="container border rounded border-dark bg-secondary text-center  mt-5 pt-2 pb-4">
+			<h2 className="fw-light mt-2">What's the Plan for Today?</h2>
+			<h3 className="fw-light mt-3 rounded">Tasks: {todos.length}</h3>
+			<FormTodo addTodo={addTodo} />
+			<div className="todo-app">
+				{todos.map((todo, index) => (
+					<Todo
+						key={index}
+						index={index}
+						todo={todo}
+						markTodo={markTodo}
+						removeTodo={removeTodo}
+					/>
+				))}
+			</div>
+		</div>
+		
+	);
+};
+
 export default Home;
+
+
