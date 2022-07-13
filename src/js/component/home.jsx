@@ -9,7 +9,7 @@ const Home = () => {
 
 	const addTodo = (text) => {
 		const newTodos = [...todos, { text }];
-
+	//	let aux= setTodos;  //Dónde lo meto??
 		setTodos(newTodos);
 /*
 	fetch('https://assets.breatheco.de/apis/fake/todos/user/dpizapal', {
@@ -20,7 +20,7 @@ const Home = () => {
       }
     })
     .then(resp => {
-		if (resp.ok ==true) {
+		if (resp.ok == true) {
 			console.log("El request se hizo bien"); // Será true (verdad) si la respuesta es exitosa.
 			return resp.json(); // (regresa una promesa) will try to parse the result as json as return a promise that you can .then for results
 		}
