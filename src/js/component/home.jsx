@@ -8,14 +8,14 @@ import Todo from "./todo";
 const Home = () => {
 	const [todos, setTodos] = useState([]);
 	//const [task, setTask] = useState("");
-	//const [firstRender, setFirstRender] = useState(false);
+	//const [firstRender, setFirstRender] = useState(false); 
 
 	const addTodo = (text) => {
 		const newTodos = [...todos, { text }];
 	
 		setTodos(newTodos);
 
-	// Esta función addTodo sustituiría a la anterior de la línea 13
+	// Esta función addTodo sustituiría a la anterior de la línea 13, mete done y label
 /* 	const addTodo = (event) => {
 	if (event.key === "Enter") {
 			setTodos([...todos, { label: task, done: true }]);
@@ -32,7 +32,7 @@ const Home = () => {
 
 	const fetchTask = async () => {
 		const response = await fetch(
-			"https://assets.breatheco.de/apis/fake/todos/user/sergi",
+			"https://assets.breatheco.de/apis/fake/todos/user/dpizapal",
 			{
 				method: "GET",
 				headers: {
