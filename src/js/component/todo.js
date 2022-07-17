@@ -4,7 +4,7 @@ function Todo({ todo, index, markTodo, removeTodo }) {
 	return (
 		<div>
 			<span style={{ textDecoration: todo.isDone ? "line-through" : "" }}>
-				{todo.text}
+				{todo.label}
 			</span>
 			<div>
 				<button
