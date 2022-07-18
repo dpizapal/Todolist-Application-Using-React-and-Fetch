@@ -8,13 +8,13 @@ const Home = () => {
 	const [task, setTask] = useState("");
 
 
-	const addTodo = (event) => {
-		if (event.key === "Enter") {
-			let aux = [...todos, { label: task, done: true }]
+	const addTodo = (value) => {
+		
+			let aux = [...todos, { label: value, done: true }]
 			setTodos(aux);
 			setTask("");
 			fetchLista(aux)
-		}
+		
 	}
 
 
@@ -23,21 +23,20 @@ const Home = () => {
 			"https://assets.breatheco.de/apis/fake/todos/user/dpizapal",
 			{
 				method: "POST",
-				body: JSON.stringify([]),
+				
 				headers: {
 					"Content-Type": "application/json",
 				},
+				body: JSON.stringify([])
 			}
 		)
 			.then(resp => {
-				if (!resp.ok)
-					throw new Error("User don't created");
+				if (resp.ok)
+					fetchLista();
 
 				return resp.json();
 			})
-			.then(data => {
-				fetchTask()
-			})
+			
 			.catch(error => {
 				alert(error)
 			})
@@ -80,14 +79,35 @@ const Home = () => {
 			"https://assets.breatheco.de/apis/fake/todos/user/dpizapal",
 			{
 				method: "PUT",
-				body: JSON.stringify(newData),
+				
 				headers: {
 					"Content-Type": "application/json",
 				},
+				body: JSON.stringify(newData)
 				//Transforma de objeto a JSON
-				body: JSON.stringify(todos),
-			}
-		);
+				//body: JSON.stringify(todos),
+
+				
+			})
+			.then(resp => {
+
+				if (!resp.ok)
+					throw new Error("User don't exist");
+
+
+				return resp.json();
+			})
+			.then(data => {
+				console.log(data)
+				getData()
+				
+			})
+			.catch(error => {
+				createUser()
+				console.log(error)
+			})
+
+		;
 	};
 
 
@@ -160,8 +180,8 @@ const Home = () => {
 			<div className="todo-app">
 				{todos.map((todo, index) => (
 					<Todo
-						//	id="tasks"             Descomentar para que tenga un value y un id
-						//	value={task}
+						id="tasks"             //Descomentar para que tenga un value y un id
+						value={task}
 						key={index}
 						index={index}
 						todo={todo}
