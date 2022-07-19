@@ -29,3 +29,11 @@ body{
       font-size:10px;
     }
   }
+  .nuke{
+    background: gray;
+    border: 1px solid white;
+    color:#fff;
+    margin:5px 5px;
+    padding: 0px 5px;
+    border-radius: 5px;
+}
