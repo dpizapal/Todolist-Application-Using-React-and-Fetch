@@ -17,6 +17,8 @@ const Home = () => {
 		
 	}
 
+	// Post Fefch, crear User
+
 	const createUser = async () => {
 		await fetch(
 			'https://assets.breatheco.de/apis/fake/todos/user/dpizapal',
@@ -73,6 +75,8 @@ const Home = () => {
 
 	};
 
+	//Put Fetch
+
 	const fetchLista = async (newData) => {
 		const resp = await fetch(
 			'https://assets.breatheco.de/apis/fake/todos/user/dpizapal',
@@ -84,7 +88,7 @@ const Home = () => {
 				},
 				body: JSON.stringify(newData)
 				//Transforma de objeto a JSON
-				//body: JSON.stringify(todos),
+				
 
 				
 			})
@@ -114,11 +118,14 @@ const Home = () => {
 		getData()
 	}, []);
 
+	//Función marcar
+
 	const markTodo = (index) => {
 		const newTodos = [...todos];
 		newTodos[index].isDone = true;
 		setTodos(newTodos);
 	};
+	//Función eliminar
 
 	const removeTodo = (index) => {
 		const newTodos = [...todos];
@@ -129,6 +136,8 @@ const Home = () => {
 		else 
 			fetchLista (newTodos)
 	};
+
+	//Función eliminar todo
 
 	const nukeToDo = ()=>{
 		fetch ('https://assets.breatheco.de/apis/fake/todos/user/dpizapal', {
@@ -153,7 +162,7 @@ const Home = () => {
 			<div className="todo-app">
 				{todos.map((todo, index) => (
 					<Todo
-						id="tasks"             //Descomentar para que tenga un value y un id
+						id="tasks"            
 						value={task}
 						key={index}
 						index={index}
