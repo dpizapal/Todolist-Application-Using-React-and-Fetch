@@ -31,7 +31,7 @@ const Home = () => {
 		)
 			.then(resp => {
 				if (resp.ok)
-					fetchLista();
+					getData();
 
 				return resp.json();
 			})
@@ -124,6 +124,10 @@ const Home = () => {
 		const newTodos = [...todos];
 		newTodos.splice(index, 1);
 		setTodos(newTodos);
+		if (newTodos.length == 0)
+			nukeToDo ();
+		else 
+			fetchLista (newTodos)
 	};
 
 	const nukeToDo = ()=>{
@@ -142,7 +146,7 @@ const Home = () => {
 
 	return (
 
-		<div id="Box" className="container border rounded border-dark bg-secondary text-center  mt-5 pt-2 pb-4">
+		<div id="Box" className="container border rounded border-dark  text-center  mt-5 pt-2 pb-4">
 			<h2 className="fw-light mt-2">What's the Plan for Today?</h2>
 			<h3 className="fw-light mt-3 rounded">Tasks: {todos.length}</h3>
 			<FormTodo addTodo={addTodo} />
